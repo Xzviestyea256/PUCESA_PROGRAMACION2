@@ -1,0 +1,113 @@
+class Persona:
+    #Una clase es una plantilla para crear objetos. Un objeto tiene propiedades y comportamientos.
+    #Los metodos son acciones o caracteristicas de un objeto. El Onjeto encapsula atributos y caracterisitcas
+    #Las clases sirven para no tener que repetir el proceso de guardar las caracteristicas del objeto
+    
+    #init es un metodo, se centra en la creacion de clases y inilizacion de atributos
+    #es como el formato de la funcion
+    
+    """def __init__(self, nombre, edad, ocupacion): #-- Atributos (Caracteristicas)
+        self.nombre = nombre
+        self.edad = edad
+        self.ocupacion = ocupacion
+        #self es el lugar donde se guardan parametros
+    
+    #Metodo, funciones dentro de una clase. Representan el comportamiento (Acciones) del objeto
+    #No es necesario que haga uso de los atributos del objeto
+    def descripcion(self):   #Aca la persona se esta describiendo
+        return f"Nombre: {self.nombre}, Edad: {self.edad}, ocupacion: {self.ocupacion}"
+
+print("Sistema de ingreso de datos \n")
+
+def ingreso():
+    nombre = input("Ingrese un nombre: ")
+    edad = int(input("Ingrese una edad: "))
+    ocupacion = input("Ingrese una ocupación: ")
+    
+    #Persona1 es el objeto, que llama a los atributos de la clase Persona 
+    persona1 = Persona(nombre, edad, ocupacion)
+        
+    print("\n")
+    print(persona1.descripcion())
+    print("\n")
+               
+while True:
+    try:
+        ingreso()
+
+        descicion=int(input("Ingrese 1 para continuar y 2 para salir: "))
+        print("\n")
+        
+        while descicion < 1 or descicion > 2:
+            descicion=int(input("Ingrese 1 para continuar y 2 para salir: "))
+            print("\n")
+            
+        if descicion == 1:
+            continue
+        elif descicion == 2:
+            break
+    except ValueError:
+        print("Error... La edad debe ser un número entero.")
+        while descicion == 1 or descicion == 2:
+            descicion=int(input("Ingrese 1 para continuar y 2 para salir: "))
+            print("\n")
+            
+        descicion=int(input("Ingrese 1 para continuar y 2 para salir: "))
+    except KeyboardInterrupt:
+        print("Saliendo... ")
+        break
+    
+    except Exception as q:
+        print("Error... ", q)"""
+    
+#Atributos privados
+class CuentaBancaria:
+    def __init__(self, saldo):
+        self.__saldo = saldo  # Atributo privado
+
+    def ver_saldo(self):
+        return self.__saldo
+
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self.__saldo += cantidad
+
+cuenta = CuentaBancaria(100)
+cuenta.depositar(50)
+print(cuenta.ver_saldo())  # Muestra 150
+
+#Herencia: Es una forma de conservar dos acciones con el mismo nombre. Siempre que la subclase pertenesca a una clase principal
+class Animal:
+    def hablar(self):
+        print("Este animal hace un sonido.")
+
+class Perro(Animal):#La clase perro correcsponde a la clase animal
+    def hablar(self):
+        print("El perro dice ¡Guau!")
+
+perro = Perro()
+perro.hablar()
+
+perro = Animal()
+perro.hablar()
+
+#Polimorfismo: Permite que multiples clases (No heredadas) usen el mismo método con comportamientos diferentes
+
+class Gato:
+    def hacer_sonido(self):
+        print("Miau")
+
+class Perro:
+    def hacer_sonido(self):
+        print("Guau")
+
+# Uso polimórfico
+def hacer_sonido_animal(animal):
+    animal.hacer_sonido() #Este def no existe en ninguna clase, pero al aplicarlo en conjunto con una clase hacen funcion dependiendo de la clase que se asigna
+
+gato = Gato()
+perro = Perro()
+
+hacer_sonido_animal(gato)
+hacer_sonido_animal(perro)
+
