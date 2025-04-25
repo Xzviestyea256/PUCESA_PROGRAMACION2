@@ -1,6 +1,6 @@
 class Persona:
     #Una clase es una plantilla para crear objetos. Un objeto tiene propiedades y comportamientos.
-    #Los metodos son acciones o caracteristicas de un objeto. El Onjeto encapsula atributos y caracterisitcas
+    #Los metodos son acciones o caracteristicas de un objeto. El objeto encapsula atributos y caracterisitcas
     #Las clases sirven para no tener que repetir el proceso de guardar las caracteristicas del objeto
     
     #init es un metodo, se centra en la creacion de clases y inilizacion de atributos

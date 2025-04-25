@@ -3,6 +3,7 @@ print("Nombre: Paul Sanchez")
 print("Fecha: 14 de abril, 2025")
 print("Materia: Programación II")
 print("Tema: Programación Orientada a Objetos en Phyton")
+#Estructura orientada a objetos
 print("-------------\n")
 
 #Crea una clase que tenga los atributos: titulo, autor, anio. 

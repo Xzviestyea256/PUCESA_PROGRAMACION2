@@ -1,0 +1,18 @@
+print("-------------")
+print("Nombre: Paul Sanchez")
+print("Fecha: 21 de abril, 2025")
+print("Materia: Programación II")
+print("Tema: Programación Orientada a Objetos en Phyton")
+print("Modularizacion")
+print("-------------")
+
+#Forma de dividir programas dividiedolos en objetos, que representan cosas en el mundo real.
+#Las clasess son plantillas para crear objetos. Define los atributos y metodos del objeto.
+#Los atrbutos son caracteristicas y los metodos acciones.
+#La programación orienteda a objetos es un paradigma.
+
+#Modularizacion: Dividir la logica del programa en diferentes archivos
+
+#Estatico: la informacion esta "quemada" en el codigo
+# Dinamico: la informacion se puede ingresar y almacenarlo en una base de datos.
+
