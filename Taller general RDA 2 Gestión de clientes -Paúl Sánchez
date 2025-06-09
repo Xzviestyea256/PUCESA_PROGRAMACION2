@@ -1,0 +1,137 @@
+print("----------")
+print("Nombre: Paul Sanchez")
+print("Fecha: 19 de mayo, 2025")
+print("Tema: Algoritmos de busqueda")
+print("Taller Sistema Inteligente de Gestión de Clientes")
+print("----------\n")
+
+#Datos y Ordenamiento
+
+Clientes = [
+    ("Juan", 25.0),
+    ("Maria", 30.0),
+    ("Carlos", 22.5),
+    ("Ana", 28.0),
+    ("Luis", 35.0),
+    ("Elena", 27.5),
+    ("Pedro", 32.0),
+    ("Laura", 29.0),
+    ("Javier", 31.0),
+    ("Sofia", 26.0)
+]
+
+def insertion(clientes):
+    for i in range(1, len(clientes)):
+        actual = clientes[i]
+        j = i - 1
+        while j >= 0 and clientes[j][0].lower() > actual[0].lower():
+            clientes[j + 1] = clientes[j]
+            j -= 1
+        clientes[j + 1] = actual
+    return clientes
+
+def selection(clientes):
+    n = len(clientes)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if clientes[j][1] < clientes[min_idx][1]:  # Comparamos por precio (índice 1)
+                min_idx = j
+        clientes[i], clientes[min_idx] = clientes[min_idx], clientes[i]
+    return clientes
+
+def binaria(clientes_ord, nombre):
+    inicio = 0
+    fin = len(clientes_ord) - 1
+    comparaciones = 0
+    
+    while inicio <= fin:
+        comparaciones += 1
+        medio = (inicio + fin) // 2
+        nombre = clientes_ord[medio][0].lower()
+
+        if nombre == nombre.lower():
+            return medio, comparaciones
+        elif nombre.lower() < nombre:
+            fin = medio - 1
+        else:
+            inicio = medio + 1
+
+    return -1, comparaciones 
+
+def lineal(clientes, nombre):
+    comparaciones = 0
+    for i in range(len(clientes)):
+        comparaciones += 1
+        if clientes[i][0].lower() == nombre.lower():
+            return i, comparaciones
+    return -1, comparaciones
+
+op_cliente = int(input("¿Desea ingresar un nuevo cliente? (1: Sí, 2: No): "))
+if op_cliente == 1:
+    n_cliente = input("Ingrese el nombre del cliente: ")
+    n_saldo = float(input("Ingrese el saldo del cliente: "))
+    Clientes.append((n_cliente, n_saldo))
+elif op_cliente == 2:
+    print("No se ingresó ningún nuevo cliente.")
+    
+#Busqueda    
+
+busqueda = input("Ingrese el nombre del cliente a buscar: ").lower()
+
+while True:
+    op_is = int(input("Para ordenar los clientes, desea usar order por nombre (1) o por saldo (2): "))
+    
+    if op_is == 1:
+        clientes_ord = insertion(Clientes.copy()) #Ordenado por nombre
+        break
+    elif op_is == 2:
+        clientes_ord = selection(Clientes.copy()) #Ordenado por saldo
+        break
+    else:
+        print("Opción no válida. Por favor, elija 1 para ordenar por nombre o 2 para ordenar por precio.")
+        continue
+
+while True:
+    op_bl = int(input(f"Para comprobar si el cliente está en la base de datos, desea usar busqueda binaria (1) o busqeuda lineal (2): "))
+
+    if op_bl == 1:
+        pos, comparaciones = binaria(clientes_ord, busqueda)
+        break
+    elif op_bl == 2:
+        pos, comparaciones = lineal(clientes_ord, busqueda)
+        break
+    else:
+        print("Opción no válida. Por favor, elija 1 para búsqueda binaria o 2 para búsqueda lineal.")
+        continue
+
+if pos != -1:
+    print(f"Cliente encontrado en la posición {pos+1} con {comparaciones} comparaciones.")
+else:
+    print(f"Cliente no encontrado. Se realizaron {comparaciones} comparaciones.")
+    
+    
+#Preguntas de Reflexión 
+
+#¿Por qué es necesario ordenar antes de realiazr la búsqueda binaria?
+    #Es necesario ordenar debido a como funciona el algoritmo, comnparando sus valores adyacentes
+    #Si los valores estan desordenados podría ponerse a buscar en un lado donde no está el
+    #objetivo y nunca lo encontraría.
+
+#¿Qué pasaría si usamos busqueda binaria sin ordenar primero?
+    #Como explique arriba, el algoritmo com para sus valores adyacentes para buscar el objetivo
+    #Si la lista está desordenada puede ser que el algoritmo se vaya para el lado contrario 
+    #de la ubicación del objetivo, y nunca lo encuentre. Y si lo encuentra le tomaría más
+    #o menos comparaciones dependiendo de donde se encuentre el objetivo.
+
+#¿Qué ventajas viste entre la busqueda binaria y la busqueda lineal?"
+    #Las tipicas ventajas de siempre, Busqueda binaria encuentra los datos más rapido
+    #independientemente de su ubicación. Mientras que Busqueda lineal encuentra más rapido
+    #el objetivo mientras más cerca del inicio este se encuentre.
+
+#¿Cuál de los dos ordenamientos te pareció más intuitivo de implementar y porqué?
+    #Me parecio que el Insertion Sort fue más intuitivo de implementar en el enfoque de
+    #funcionalidad, porque las listas con nombres, usualmente se organizan por nombre.
+    #Selection Sort puede llegar a ser util si se busca saber información adicional 
+    #como la cantidad de saldo del cliente, pero buscar por nombre es más común.
+    

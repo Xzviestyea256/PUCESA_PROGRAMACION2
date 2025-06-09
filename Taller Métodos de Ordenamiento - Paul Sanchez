@@ -1,0 +1,142 @@
+print("----------")
+print("Nombre: Paul Sanchez")
+print("Fecha: 26 de mayo, 2025")
+print("Tema: Algoritmos de busqueda")
+print("Taller Métodos de Ordenamiento")
+print("----------\n")
+
+#1.- Implementación
+
+precios = [10, 12, 9, 7, 3, 20, 11, 14, 8, 15]
+print("Lista Original:", precios)
+while True:
+    opcion = input("Desea agregar un precio a la lista? (si/no): ")
+    if opcion.lower() == 'si':
+        nuevo_precio = int(input("Ingrese el nuevo precio: "))
+        precios.append(nuevo_precio)
+        print("Lista Actualizada:", precios)
+    else:
+        break
+
+print("----------\n")
+
+print("Bubble Sort")
+
+def bubble(precios):
+    n = len(precios)
+    comp_bubble = 0
+    camb_bubble = 0
+    for i in range(n):
+        for j in range(0, n-i-1):
+            comp_bubble += 1
+            if precios[j] > precios[j+1]:
+                camb_bubble += 1
+                precios[j], precios[j+1] = precios[j+1], precios[j]
+    print("Comparaciones realizadas:", comp_bubble)
+    print("Intercambios realizados:", camb_bubble)
+    return precios
+
+print("Lista Bubble Sort:", bubble(precios.copy()))
+print("----------\n")
+
+print("Insertion Sort")
+
+
+def insertion(precios):
+    comp_insertion = 0
+    camb_insertion = 0
+    for i in range(1, len(precios)):
+        comp_insertion += 1
+        ln = precios[i]
+        j = i -1
+        while j >= 0 and ln < precios[j]:
+            camb_insertion += 1
+            precios[j + 1] = precios[j]
+            j -= 1    
+        precios[j + 1] = ln
+    print("Comparaciones realizadas:", comp_insertion)
+    print("Intercambios realizados:", camb_insertion)
+    return precios
+
+print("Lista Insertion Sort:", insertion(precios.copy()))
+print("----------\n")
+
+print("Selection Sort")
+
+def selection(precios):
+    n = len(precios)
+    comp_selection = 0
+    camb_selection = 0
+    for i in range(n):
+        minimo = i
+        for j in range(i+1, n):
+            comp_selection += 1
+            if precios[j] < precios[minimo]:
+                minimo = j
+                
+        if minimo != i:
+            camb_selection += 1
+            precios[i], precios[minimo] = precios[minimo], precios[i]
+    print("Comparaciones realizadas:", comp_selection)
+    print("Intercambios realizados:", camb_selection)
+    return precios
+
+print("Lista Selection Sort:", selection(precios.copy()))
+
+#2.- Explicación y análisis
+
+#Funcioanlidades de cada algoritmo
+#Bubble Sort:
+    #Se posiciona en el primer elemento de la lista y compara los valores 
+    #que tiene a los lados, si el valor de la derecha es menor, intercambia lugares
+    # con el otro, y vuelve a comparar desde el inicio de la lista hasta que todos 
+    #los valores esten ordenados.
+    
+#Insertion Sort
+    #Se posiciona en el segundo elemento de la lista y compara con el primero, si el segundo
+    # elemento es menor que el primero los intercambia, si no lo es lo deja en sl mismo lugar 
+    #y se posiciona en el siguiente elemento para volver a comparar, hasta que la lista
+    #esté ordenada.
+    
+#Selection Sort
+    #Se posiciona en el primer elemento de la lista (usualmente se hace llamar minimo)
+    #y recorre la lista buscando un valor menor a el, si lo encuentra lo intercambia
+    #con el valor minimo, y vuelve a recorrer la lista hasta que todos los valores 
+    #esten ordenados.
+    
+#Comparación de algoritmos:
+    #Con una lista de 10 elementos cada algoritmo realizó:
+
+    #Bubble Sort:
+        #45 comparaciones y 19 intercambios.
+    #Insertion Sort:
+        #9 comparaciones y 19 intercambios
+    #Selection Sort:
+        #45 comparaciones y 7 intercambios.
+
+    #En este caso el algoritmo más efectivo fue Insertion Sort, ya que hizo menos comparaciones
+    #y aunque tiene el mismo número de intercambios que Bubble Sort, le tomó menos comparaciones
+    #para llegar al mismo resultado.
+    #Bubble Sort y Selection Sort compararon el mismo número de veces, pero Selection
+    #Sort hizo menos intercambios, por lo que es más efectivo que Bubble Sort.
+    
+    #¿Porqué pasó esto?
+    #Porque Insertion Sort no actua amenos que el elemento que compara no sea menor que el mismo
+    #y no recorre toda la lista, sino que se posiciona en el siguiente elemento y compara
+    #nuevamente, por lo que se podría decir que continua donde lo dejó y termina de ordenar la 
+    #lisyta de manera más rápida. Tambien puede ser porque la lita estaba medio ordenada, 
+    #por lo que tuvo que hacer menos comparaciones para ordenar la lista.
+
+#¿En qué situacion usaria cada uno de ellos?
+
+    #Bubble Sort es más factible para litas pequeñas, no es muy efectiva cuando la lista está
+    #parcialmete ordenada ya que igual va a hacer un gran número de comparaciones
+
+    #Insertion Sort es mejor para listas medio ordenadas (por lo que he mos podido ver), 
+    #y trabaja mejor en listas pequeñas, ya que así hace menos intecambios y comparaciones.
+
+    #Selection Sort es, de igual manera, más efectivo en listas pequeñas, ya que hace un 
+    #gran número de comparaciones para los pocos intercambios que llega a hacer.
+
+    #Todos estos algoritmos son eficientes en listas pequeñas, su mejor uso seria en 
+    #sistemas dend #no sea necesario ordenar grandes cantidades de datos.
